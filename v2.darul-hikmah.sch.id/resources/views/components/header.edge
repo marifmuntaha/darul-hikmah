@@ -1,0 +1,93 @@
+
+    <header class="header-area">
+        <div class="header-top bg-img">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7 col-12 col-sm-8">
+                        <div class="header-contact">
+                            <ul>
+                                <li><i class="fa fa-phone"></i> {{setting.phone}}</li>
+                                <li><i class="fa fa-envelope-o"></i><a href="mailto:{{setting.email}}">{{setting.email}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5 col-12 col-sm-4">
+                        <div class="login-register">
+                            <ul>
+                                <li><a class="whatsapp" target="_blank" href="{{setting.whatsapp}}"><i class="fa fa-whatsapp"></i></a></li>
+                                <li><a class="instagram" target="_blank" href="{{setting.instagram}}"><i class="fa fa-instagram"></i></a></li>
+                                <li><a class="youtube" target="_blank" href="{{setting.youtube}}"><i class="fa fa-youtube-play"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom sticky-bar clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-6 col-4">
+                        <div class="logo">
+                            <a href="{{appUrl}}"><img alt="" src="{{setting.logo}}" style="width: 200px"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-6 col-8">
+                        <div class="menu-cart-wrap">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        @each((parent) in menu.parent)
+                                        <li>
+                                            <a href="{{parent.link}}">
+                                                @if(parent.child)
+                                                <i class="fa fa-angle-down"></i>
+                                                @end
+                                                {{parent.name}}
+                                            </a>
+                                            @if(parent.child)
+                                            <ul class="submenu">
+                                                @each((child) in menu.children)
+                                                @if(child.parent === parent.id)
+                                                <li><a href="{{child.link}}">{{child.name}}</a></li>
+                                                @end
+                                                @end
+                                            </ul>
+                                            @end
+                                        </li>
+                                        @end
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu-area">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul>
+                                @each((parent) in menu.parent)
+                                    <li>
+                                        <a href="{{parent.link}}">
+                                          @if(parent.child)
+                                          <i class="fa fa-angle-down"></i>
+                                          @end
+                                          {{parent.name}}
+                                        </a>
+                                        @if(parent.child)
+                                        <ul class="submenu">
+                                            @each((child) in menu.children)
+                                            @if(child.parent === parent.id)
+                                                <li><a href="{{child.link}}">{{child.name}}</a></li>
+                                            @end
+                                            @end
+                                        </ul>
+                                        @end
+                                    </li>
+                                @end
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
