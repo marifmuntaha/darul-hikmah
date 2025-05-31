@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html class="no-js" lang="id">
+  @head({meta: meta, page: page})
+  @end
+  <body>
+    @header({})
+    @end
+    {{{ await $slots.main() }}}
+    @footer({})
+    @end
+  </body>
+</html>
