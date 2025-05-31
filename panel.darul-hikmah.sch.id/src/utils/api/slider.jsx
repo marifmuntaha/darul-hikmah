@@ -11,10 +11,11 @@ function get(params) {
 function store(params) {
     const baseUrl = '/slider'
     return api.createWithFile(baseUrl, params).then((resp) => {
-        const {message, result} = resp;
+        const {message} = resp;
         RToast(message, 'success');
-        return result;
-    }).catch(() => false)
+    }).catch(() => {
+        throw new Error()
+    })
 }
 
 function show(id) {
@@ -27,19 +28,21 @@ function show(id) {
 function update(params) {
     const baseUrl = `/slider/${params.id}`
     return api.updateWithFile(baseUrl, params).then((resp) => {
-        const {message, result} = resp;
+        const {message} = resp;
         RToast(message, 'success');
-        return result;
-    }).catch(() => false)
+    }).catch(() => {
+        throw new Error()
+    })
 }
 
 function destroy(id) {
     const baseUrl = `/slider/${id}`
     return api.delete(baseUrl).then((resp) => {
-        const {message, result} = resp;
+        const {message} = resp;
         RToast(message, 'success');
-        return result;
-    }).catch(() => false)
+    }).catch(() => {
+        throw new Error()
+    })
 }
 
 export {get, store, show, update, destroy}

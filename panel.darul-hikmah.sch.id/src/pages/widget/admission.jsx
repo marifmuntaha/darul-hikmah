@@ -46,7 +46,7 @@ const Admission = () => {
         const params = {
             id: data.id,
             name: data.name,
-            content: admission,
+            content: JSON.stringify(admission),
         }
         updatePage(params).then(() => setLoading(false)).catch(() => setLoading(false));
 

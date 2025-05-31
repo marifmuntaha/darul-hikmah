@@ -7,17 +7,17 @@ import { storePageValidation } from '#validators/page'
 export default class PagesController {
   async index({ request, response }: HttpContext) {
     try {
-      const pages = Page
-      if (request.input('name')) {
-        await pages.query().where('name', '=', request.input('name')).first()
+      const page = Page.query()
+      let pages = null
+      if (request.input('name') !== undefined) {
+        pages = await page.where('name', request.input('name')).first()
       } else {
-        await pages.all()
+        pages = await page.orderBy('id', 'asc')
       }
       return response.status(200).json({
         result: pages,
       })
     } catch (error) {
-      console.error(error)
       const { status, messages } = error
       return response.status(status).json(messages)
     }
@@ -26,14 +26,13 @@ export default class PagesController {
   async update({ params, request, response }: HttpContext) {
     try {
       const data = request.body()
-      const page = await Page.query().where('name', '=', request.input('name')).first()
+      const page = await Page.findOrFail(params.id)
       const payload = await storePageValidation.validate(data)
-      console.log(payload)
-      // const update = await page?.fill(payload).save()
-      // return response.status(200).json({
-      //   result: update,
-      //   message: 'Page updated successfully.',
-      // })
+      const update = await page?.merge(payload).save()
+      return response.status(200).json({
+        result: update,
+        message: 'Page updated successfully.',
+      })
     } catch (error) {
       const { status, messages } = error
       return response.status(status).json(messages)

@@ -46,7 +46,7 @@ const Division = () => {
         const params = {
             id: data.id,
             name: data.name,
-            content: division,
+            content: JSON.stringify(division),
         }
         updatePage(params).then(() => setLoading(false)).catch(() => setLoading(false));
 

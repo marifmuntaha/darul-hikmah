@@ -49,7 +49,7 @@ const Course = () => {
             const params = {
                 id: data.id,
                 name: data.name,
-                content: course,
+                content: JSON.stringify(course),
             }
             updatePage(params).then(() => setLoading(false)).catch(() => setLoading(false));
         } else {
@@ -58,7 +58,7 @@ const Course = () => {
                 const params = {
                     id: data.id,
                     name: data.name,
-                    content: course,
+                    content: JSON.stringify(course),
                 }
                 updatePage(params).then(() => setLoading(false)).catch(() => setLoading(false));
             }).catch(() => setLoading(false))

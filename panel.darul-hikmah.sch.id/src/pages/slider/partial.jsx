@@ -76,7 +76,7 @@ const Partial = () => {
             setValue('title', resp.title);
             setValue('description', resp.description);
             setValue('status', resp.status);
-            setButton(resp.button);
+            setButton(JSON.parse(resp.button));
             setBackground(resp.background);
             setImage(resp.image);
         })

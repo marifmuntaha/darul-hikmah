@@ -32,7 +32,7 @@ const About = () => {
         const params = {
             id: data.id,
             name: data.name,
-            content: about,
+            content: JSON.stringify(about),
         }
         if (typeof about.image === "string") {
             updatePage(params).then(() => {

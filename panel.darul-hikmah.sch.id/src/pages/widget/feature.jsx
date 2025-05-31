@@ -44,7 +44,7 @@ const Feature = () => {
         const params = {
             id: data?.id,
             name: data.name,
-            content: features
+            content: JSON.stringify(features),
         };
         await updatePage(params).then(() => {
             setLoading({add: false, save: false});
